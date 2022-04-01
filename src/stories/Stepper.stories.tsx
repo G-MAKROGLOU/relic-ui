@@ -1,8 +1,10 @@
 import React from "react";
-import { Stepper, StepperProps, Step } from "../components/Stepper/Stepper";
+import { Stepper } from "../components/Stepper/Stepper";
 import {Button} from '../components/Button/Button'
 import { LoadingSpinner } from "../components/LoadingSpinner/LoadingSpinner";
 import {AiFillApi} from 'react-icons/ai'
+import {Step, StepperProps} from '../components/Stepper/Stepper.types'
+
 
 let steps = [
   {

@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { FAB, FabProps } from "../components/FAB/FAB";
+import { FAB } from "../components/FAB/FAB";
+import {FabProps} from "../components/FAB/FAB.types"
 
 
 export default {

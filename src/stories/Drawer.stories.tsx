@@ -1,7 +1,8 @@
 import React from "react";
 import { Story } from "@storybook/react";
 import useState from 'storybook-addon-state';
-import { Drawer, DrawerProps } from "../components/Drawer/Drawer";
+import { Drawer } from "../components/Drawer/Drawer";
+import { DrawerProps } from "../components/Drawer/Drawer.types";
 import {Button} from '../components/Button/Button'
 import { useArgs } from '@storybook/client-api';
 

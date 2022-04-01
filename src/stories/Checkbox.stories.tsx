@@ -1,10 +1,14 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
 import {   
-    CheckboxItemProps,
-    CheckboxProps,
     Checkbox,
 } from "../components/Inputs/Inputs";
+
+
+import {
+    CheckboxProps,
+    CheckboxItemProps
+  } from '../components/Inputs/Inputs.types'
 
 
 export default {
@@ -55,7 +59,7 @@ export const BasicCheckbox = ({onChange, ...args}:CheckboxProps) => {
     const [{values}, updateArgs] = useArgs();
 
 
-    const handleOnChange = (selected:CheckboxItemProps[]) => updateArgs({values: selected});
+    const handleOnChange = (selected:string[]) => updateArgs({values: selected});
 
     return <Checkbox {...args} onChange={handleOnChange} />
 }

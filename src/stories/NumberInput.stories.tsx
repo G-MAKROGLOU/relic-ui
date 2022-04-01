@@ -1,10 +1,13 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
 import {   
-    NumberInputProps,
     NumberInput
 } from "../components/Inputs/Inputs";
 
+
+import {
+  NumberInputProps
+} from '../components/Inputs/Inputs.types'
 
 export default {
   title: "Inputs/NumberInput",

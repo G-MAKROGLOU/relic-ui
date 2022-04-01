@@ -2,27 +2,9 @@ import React from 'react';
 import {FcDeleteDatabase} from 'react-icons/fc'
 import {FaCaretDown} from 'react-icons/fa'
 import {Typography} from '../Typography/Typography'
+import {SplitDropdownProps, DropdownItem } from './SplitDropdown.types'
 
 
-export type SplitDropdownProps = {
-   
-    /**
-     * A JSON hierarchical structure describing the items of each dropdown.
-     * Check the code examples in Docs for more.
-     */
-     items:Object[];
- 
-     /**
-      * Returns the selected final element from the right split in the following form.
-      * {key: 'string', title: 'string'}
-      */
-     onClick: (item:DropdownItem) => void;
- }
- 
- export type DropdownItem = {
-     key: string,
-     title: string
- }
 
 /**
  * UI Control with the purpose to allow the user perform a certain action 
@@ -41,17 +23,20 @@ export type SplitDropdownProps = {
   
       React.useEffect(() => {
 
-        function handleClickAway(e:MouseEvent){
+        function handleClickAway(e:any){
             if(splitRef.current && !splitRef.current.contains(e.target)){
                 document.querySelector('.relic-split-dropdown-left')?.classList.remove('relic-split-dropdown-focused');
                 document.querySelector('.relic-split-dropdown-center')?.classList.remove('relic-split-dropdown-focused');
                 document.querySelector('.relic-split-dropdown-right')?.classList.remove('relic-split-dropdown-focused');
                 let bubble = document.querySelector('#relic-split-dropdown-content-bubble') as HTMLDivElement;
                 bubble.style.opacity = "0";
+                bubble.style.display = "none";
             }
         }
 
         document.addEventListener('mousedown', handleClickAway)
+
+        document.addEventListener('scroll', handleClickAway)
 
   
         let firstItems:any = [];
@@ -67,6 +52,7 @@ export type SplitDropdownProps = {
 
         return () => {
             document.removeEventListener('mousedown', handleClickAway)
+            document.removeEventListener('scroll', handleClickAway)
         }
 
       }, [])
@@ -150,11 +136,12 @@ export type SplitDropdownProps = {
               //hide bubble
               let bubble = document.querySelector('#relic-split-dropdown-content-bubble') as HTMLDivElement;
               bubble.style.opacity = "0";
+              bubble.style.display = "none";
               //remove focused class from right
               document.querySelector('.relic-split-dropdown-right')?.classList.remove('relic-split-dropdown-focused');
               //reset the active split
               setActiveSplit('center')
-              //callback the user event listener returning them the click element
+              //callback: the user event listener, returning them the click element
               if(onClick) onClick(item)
               
          }
@@ -171,6 +158,7 @@ export type SplitDropdownProps = {
   
           let bubble = document.querySelector('#relic-split-dropdown-content-bubble') as HTMLDivElement;
           bubble.style.opacity = "1";
+          bubble.style.display = "block";
           bubble.style.zIndex = "0";
           bubble.style.top = `${top + height + 10}px`;
           bubble.style.left = `${left - 10 + width/2}px`;

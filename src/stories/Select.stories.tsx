@@ -1,12 +1,13 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
 import {   
-    SelectItemProps,
-    SelectProps,
     Select,
-    Radio,
-    Checkbox,
 } from "../components/Inputs/Inputs";
+
+import {
+    SelectProps,
+    SelectItemProps
+  } from '../components/Inputs/Inputs.types'
 
 
 export default {

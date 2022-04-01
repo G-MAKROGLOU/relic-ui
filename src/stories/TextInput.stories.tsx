@@ -1,6 +1,9 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
-import {  TextInput, TextInputProps} from "../components/Inputs/Inputs";
+import {  TextInput} from "../components/Inputs/Inputs";
+import {
+  TextInputProps
+} from '../components/Inputs/Inputs.types'
 
 
 export default {

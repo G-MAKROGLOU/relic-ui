@@ -1,11 +1,13 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
 import {   
-    RadioResponse,
-    RadioProps,
     Radio,
-    Checkbox,
 } from "../components/Inputs/Inputs";
+
+import {
+    RadioProps,
+    RadioResponse
+  } from '../components/Inputs/Inputs.types'
 
 
 export default {
@@ -16,7 +18,6 @@ export default {
     value: "4",
     onChange: (e:RadioResponse) => {},
     alignment: "vertical",
-    id: "weekDaysRadio",
     alignLabel: "left",
     items: [
         {

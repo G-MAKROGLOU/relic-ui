@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { SplitDropdown, SplitDropdownProps, DropdownItem } from "../components/SplitDropdown/SplitDropdown";
+import { SplitDropdown } from "../components/SplitDropdown/SplitDropdown";
+import { SplitDropdownProps, DropdownItem } from "../components/SplitDropdown/SplitDropdown.types";
 
 
 export default {

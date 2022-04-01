@@ -1,17 +1,7 @@
 import React from "react";
+import {TableProps} from './Table.types'
 
 
-export type Column = {
-    label: string,
-    index: string,
-    key: number
-}
-
-
-export type TableProps = {
-    columns:Column[],
-    rows:any[]
-}
 
 
 export const Table: React.FC<TableProps> = ({
@@ -23,20 +13,20 @@ export const Table: React.FC<TableProps> = ({
             <thead className="relic-table-thead">
                 <tr>
                     <th className="relic-table-header">#</th>
-                    {columns.map(th => (<th className="relic-table-header" key={th.key}>{th.label}</th>))}
+                    {columns.map((th, index) => (<th className="relic-table-header" key={index}>{th.label}</th>))}
                 </tr>
             </thead>
             <tbody>
                 {rows.map((tr, id) => {
                     let keys = Object.keys(tr);
                     return (
-                        <tr className="relic-table-row">
-                            <td className="relic-table-row-index" key={id}>{id+1}</td>
+                        <tr key={id} className="relic-table-row">
+                            <td className="relic-table-row-index">{id+1}</td>
                             {columns.map(col => {
                                 let elem;
-                                keys.forEach(key => {
+                                keys.forEach((key, idx) => {
                                     if(col.index === key){
-                                        elem = <td className="relic-table-data" key={tr[key]}>{tr[key]}</td>
+                                        elem = <td className="relic-table-data" key={idx}>{tr[key]}</td>
                                     }
                                 })
                                 return elem

@@ -1,10 +1,10 @@
 import React from "react";
 import {   
     FormProps,
-    FormProvider,
-    ValidationEmittedValue,
-    FormItem
-} from "../components/Form/Form";
+    ValidationEmittedValue
+} from "../components/Form/Form.types";
+
+import {FormProvider, FormItem} from '../components/Form/Form'
 
 import {Button} from '../components/Button/Button'
 
@@ -57,7 +57,7 @@ export default {
 
 
     const textInputValidation = (e:ValidationEmittedValue) => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
             if(/^[a-z]+$/.test(value)) resolve(true)
             reject("Only alphabetical characters")
@@ -66,7 +66,7 @@ export default {
 
 
     const numInputValidation = (e:ValidationEmittedValue) => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
             if(/^[0-9]+$/.test(value)) resolve(true)
             reject("Only numbers")
@@ -75,7 +75,7 @@ export default {
 
 
     const passInputValidation = (e:ValidationEmittedValue) => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
             if(/^(?=.*[0-9])(?=.*[a-zA-Z])[a-zA-Z0-9]{6,}$/.test(value)) resolve(true)
             reject("At least 6 characters and must contain at least 1 upper case, 1 lower case and 1 number!")
@@ -84,7 +84,7 @@ export default {
 
 
     const selectValidation = (e:ValidationEmittedValue) => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
             if(value !== '') resolve(true)
             reject("An option is required!")
@@ -93,7 +93,7 @@ export default {
 
 
     const radioValidation = (e:ValidationEmittedValue) => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
             if(value !== '') resolve(true)
             reject("Gender is a required field!")
@@ -102,7 +102,7 @@ export default {
 
 
     const checkboxValidation = (e:ValidationEmittedValue):Promise<boolean> => {
-        let {target: {value}} = e 
+        let {target: {value}}:any = e 
         let requiredValues:boolean[] = []
         return new Promise((resolve, reject) => {
             value.forEach((val:any) => {

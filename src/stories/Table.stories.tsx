@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { Table, TableProps } from "../components/Table/Table";
-
+import { Table } from "../components/Table/Table";
+import {  TableProps } from "../components/Table/Table.types";
 
 export default {
   title: "Table",

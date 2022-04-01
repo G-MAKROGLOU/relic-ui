@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { Button, ButtonProps } from "../components/Button/Button";
+import { Button } from "../components/Button/Button";
+import {ButtonProps} from '../components/Button/Button.types'
 
 
 export default {

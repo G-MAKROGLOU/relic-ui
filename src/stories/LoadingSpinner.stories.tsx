@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { LoadingSpinner, LoadingSpinnerProps } from "../components/LoadingSpinner/LoadingSpinner";
+import { LoadingSpinner } from "../components/LoadingSpinner/LoadingSpinner";
+import {LoadingSpinnerProps} from '../components/LoadingSpinner/LoadingSpinner.types'
 
 
 export default {

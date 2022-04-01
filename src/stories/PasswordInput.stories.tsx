@@ -1,12 +1,12 @@
 import React from "react";
 import { useArgs } from '@storybook/client-api';
 import {   
-    PasswordInputProps,
-    PasswordInput,
-    Select,
-    Radio,
-    Checkbox,
+    PasswordInput
 } from "../components/Inputs/Inputs";
+
+import {
+  PasswordInputProps
+} from '../components/Inputs/Inputs.types'
 
 
 export default {

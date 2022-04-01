@@ -1,6 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
-import { Card, CardProps } from "../components/Card/Card";
+import { Card } from "../components/Card/Card";
+import { CardProps } from "../components/Card/Card.types";
 import {MdOutlineAddShoppingCart} from 'react-icons/md'
 
 const CustomCardFooter = () => {
