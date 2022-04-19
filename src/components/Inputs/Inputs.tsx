@@ -11,7 +11,6 @@ import {
 } from './Inputs.types'
 
 
-
 /**
  * A styled text input based on the native input type="text" HTML element
  */
