@@ -1,7 +1,6 @@
 import React from "react";
 import {ButtonProps} from './Button.types'
 
-
 /**
  * A button component with different variants to implement click events
  */
