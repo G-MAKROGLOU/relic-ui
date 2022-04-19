@@ -1,0 +1,1673 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+/**
+*===================================================
+*=                                                 =
+*=                  GLOBAL VARS                    =
+*=                                                 =
+*===================================================
+*/
+* {
+  margin: 0;
+}
+
+
+body::-webkit-scrollbar {
+  background-color: transparent;
+  width: 10px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  border-radius: 50px;
+}
+
+
+:root {
+  --input-width: 180px;
+  --input-height: 25px;
+  --input-border-radius: 2px;
+  --input-border: 1px solid #c1c1c1;
+  --font-family: Open Sans, sans-serif;
+  --disabled-input-bg: #F6FAFF;
+  --input-padding: 3px 10px;
+  --input-readonly-color: #b1b1b1;
+  --input-border-hover: #43B4E5;
+  --input-outline-focus: 1.5px solid #43b4e593;
+  --primary-color: #0F8DD6;
+  --gray-scale: #c1c1c1;
+  --bubble-color: rgb(248, 248, 248)
+}
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC BUTTON               =
+*=                                                 =
+*===================================================
+*/
+
+/*================ DEFAULT ================*/
+.relic-btn {
+  cursor: pointer;
+  font-family: Open Sans, sans-serif;
+  color: #fff;
+  transition: all .3s;
+  border-radius: 2px;
+  border-width: 1px;
+  border-style: solid;
+  position: relative;
+}
+
+.relic-btn:disabled {
+  cursor: not-allowed;
+  background-color: #c1c1c1;
+  color: #999999;
+  border-color: #c1c1c1;
+}
+.relic-btn-loading {
+  transition: all .3s;
+  opacity: .5;
+  pointer-events: none;
+}
+
+/*================ COLOR SCHEMES ================*/
+
+/* PRIMARY */
+.relic-btn-primary {
+  background-color: #0f8dd6;
+  border-color: #0f8dd6;
+}
+.relic-btn-primary:hover {
+  background-color: #035B95;
+  border-color: #035B95;
+}
+.relic-btn-primary:active  {
+  background-color: #0f8dd6;
+  border-color: #0f8dd6;
+}
+
+/* SECONDARY */
+.relic-btn-secondary {
+  background-color: #75D1D8;
+  border-color: #75D1D8;
+}
+.relic-btn-secondary:hover {
+  background-color: #A471D1;
+  border-color: #A471D1;
+}
+.relic-btn-secondary:active {
+  background-color: #75D1D8;
+  border-color: #75D1D8;
+}
+
+/* SUCCESS */
+.relic-btn-success {
+  background-color: #99e2b4;
+  border-color: #99e2b4;
+}
+.relic-btn-success:hover {
+  background-color: #78c6a3;
+  border-color: #78c6a3;
+}
+.relic-btn-success:active {
+  background-color: #99e2b4;
+  border-color: #99e2b4;
+}
+
+/* DANGER */
+.relic-btn-danger {
+  background-color: #e01e37;
+  border-color: #e01e37;
+}
+.relic-btn-danger:hover {
+  background-color: #bd1f36;
+  border-color: #bd1f36;
+}
+.relic-btn-danger:active {
+  background-color: #e01e37;
+  border-color: #e01e37;
+}
+
+/* INFO */
+.relic-btn-info {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+}
+.relic-btn-info:hover {
+  background-color: #42a5f5;
+  border-color: #42a5f5;
+}
+.relic-btn-info:active {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+}
+
+/* WARNING */
+.relic-btn-warning {
+  background-color: #f8961e;
+  border-color: #f8961e;
+}
+.relic-btn-warning:hover{
+  background-color: #f3722c;
+  border-color: #f3722c;
+}
+.relic-btn-warning:active {
+  background-color: #f8961e;
+  border-color: #f8961e;
+}
+
+/* OUTLINED */
+.relic-btn-outlined {
+  background-color: transparent;
+  border-color: #0f8dd6;
+  color: #0f8dd6;
+}
+.relic-btn-outlined:hover{
+  background-color: transparent;
+  border-color: #035B95;
+  color: #035B95;
+}
+.relic-btn-outlined:active {
+  background-color: transparent;
+  border-color: #0f8dd6;
+  color: #0f8dd6;
+}
+
+/* LINK */
+.relic-btn-link {
+  background-color: transparent;
+  border: 0;
+  color: #0f8dd6;
+  text-decoration: underline;
+}
+.relic-btn-link:hover{
+  color: #035B95;
+}
+.relic-btn-link:active {
+  background-color: transparent;
+  border: 0;
+  color: #0f8dd6;
+  text-decoration: underline;
+}
+
+
+
+
+/*================ SIZES ================*/
+
+/* SMALL */
+.relic-btn-small {
+  padding: 5px;
+  min-width: 100px;
+  font-size: 10px;
+}
+.relic-btn-small::after {
+  content: '';
+  min-width: 0px;
+  background-color: rgba(255,255,255,.3);
+  display: block;
+  height: 26px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  transition: all .3s;
+  border-radius: 2px;
+}
+.relic-btn-small:hover::after {
+  min-width: calc(100% + 2px);
+}
+/* MEDIUM */
+.relic-btn-medium {
+  padding: 8px;
+  min-width: 150px;
+}
+.relic-btn-medium::after {
+  content: '';
+  min-width: 0px;
+  background-color: rgba(255,255,255,.3);
+  display: block;
+  height: 36px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  transition: all .3s;
+  border-radius: 2px;
+}
+.relic-btn-medium:hover::after{
+  min-width: calc(100% + 2px);
+}
+/* LARGE */
+.relic-btn-large {
+  padding: 12px;
+  min-width: 180px;
+  font-size: 14px;
+}
+.relic-btn-large::after {
+  content: '';
+  min-width: 0px;
+  background-color: rgba(255,255,255,.3);
+  display: block;
+  height: 45px;
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  transition: all .3s;
+  border-radius: 2px;
+}
+.relic-btn-large:hover::after{
+  min-width: calc(100% + 2px);
+}
+
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC FAB                  =
+*=                                                 =
+*===================================================
+*/
+
+.relic-fab {
+  background-color: var(--primary-color);
+  color: #fff;
+  font-weight: bolder;
+  font-size: 20px;
+  border: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0px 2px 7.5px 0px rgba(0,0,0,.5);
+  cursor: pointer;
+  transition: all .3s;
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+.relic-fab:hover {
+  background-color: #0d72ad;
+}
+
+.relic-fab:active {
+  background-color: var(--primary-color);
+}
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC CARD                 =
+*=                                                 =
+*===================================================
+*/
+
+.relic-card {
+  background-color: var(--bubble-color);
+  border-radius: 2px;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding-top: 10px;
+}
+
+.relic-card-image {
+  width: 150px;
+  display: block;
+  margin: 0px auto;
+}
+
+
+.relic-card-body {
+  padding: 10px;
+}
+
+.relic-card-header {
+  font-family: var(--font-family);
+  font-size: 17px;
+}
+
+.relic-card-description {
+  width: 220px;
+  font-family: var(--font-family);
+  font-size: 14px;
+  color: #484848;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.example-footer-action {
+  cursor: pointer;
+  color: #5a5a5a;
+  transition: all .3s;
+  font-size: 24px;
+}
+
+.example-footer-action:hover {
+  color: black;
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC DRAWER               =
+*=                                                 =
+*===================================================
+*/
+.relic-drawer {
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,.5);
+  position: fixed;
+  background-color: #fff;
+  padding: 10px;
+}
+
+.relic-drawer-starting-class {
+  opacity: 0;
+}
+
+* {
+  font-family: Open Sans, sans-serif;
+}
+
+
+.relic-drawer-left, .relic-drawer-right {
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+}
+
+
+.relic-drawer-top, .relic-drawer-bottom {
+  width: 100vw;
+  left: 0;
+  right: 0;
+}
+
+
+.relic-drawer-appear-left {
+  animation: appear-left .2s linear forwards;
+}
+.relic-drawer-disappear-left {
+  animation: disappear-left .2s linear forwards;
+}
+
+.relic-drawer-appear-right {
+  animation: appear-right .2s linear forwards;
+}
+.relic-drawer-disappear-right {
+  animation: disappear-right .2s linear forwards;
+}
+
+.relic-drawer-appear-bottom {
+  animation: appear-bottom .2s linear forwards;
+}
+.relic-drawer-disappear-bottom {
+  animation: disappear-bottom .2s linear forwards;
+}
+
+.relic-drawer-appear-top {
+  animation: appear-top .2s linear forwards;
+}
+.relic-drawer-disappear-top {
+  animation: disappear-top .2s linear forwards;
+}
+
+
+.relic-drawer-head {
+  display: flex;
+  align-items: center;
+  min-width: 250px;
+  padding: 10px;
+  justify-content: space-between;
+}
+.relic-drawer-title {
+  text-align: center; 
+  margin: 0;
+  width: 95%;
+}
+.relic-drawer-close-icon {
+  font-size: 24px;
+  color: #c1c1c1;
+  cursor: pointer;
+  transition: all .2s;
+}
+
+.relic-drawer-close-icon:hover {
+  color: black;
+}
+
+
+.relic-drawer-body {
+  padding: 10px;
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC TABLE                =
+*=                                                 =
+*===================================================
+*/
+
+.relic-table {
+  border-spacing: 0;
+}
+
+.relic-table-thead {
+  background-color: #F2FBFF;
+  height: 40px;
+}
+
+.relic-table-header {
+  padding: 10px;
+  font-family: Open Sans, sans-serif;
+  font-size: 14px; 
+  color: #0A6DB9;
+}
+
+.relic-table-row-index {
+  padding: 10px;
+  font-family: Open Sans, sans-serif;
+  font-size: 14px;
+  color: #0A6DB9;
+  font-weight: 700;
+}
+
+.relic-table-row {
+  transition: all .3s;
+}
+
+.relic-table-row:hover {
+  background-color: #F5F6F8;
+}
+
+.relic-table-row:hover >  .relic-table-data {
+  color: #c1c1c1;
+}
+
+.relic-table-data {
+  padding: 10px; 
+  max-width: 150px;
+  font-family: Open Sans, sans-serif; 
+  font-size: 14px; 
+  text-align: center;
+  transition: all .3s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC SPLITDROPDOWN        =
+*=                                                 =
+*===================================================
+*/
+.relic-split-dropdown-left, .relic-split-dropdown-center, .relic-split-dropdown-right {
+  border: 1px solid var(--gray-scale);
+  padding: 5px;
+  cursor: pointer;
+  transition: all .3s;
+}
+.relic-split-dropdown-carret {
+  color: var(--gray-scale);
+  transition: all .3s;
+  pointer-events: none;
+}
+
+.relic-split-dropdown-left:hover, .relic-split-dropdown-center:hover, .relic-split-dropdown-right:hover {
+  background-color: #7F8F9D;
+}
+
+.relic-split-dropdown-left:hover > .relic-split-dropdown-carret, 
+.relic-split-dropdown-center:hover > .relic-split-dropdown-carret, 
+.relic-split-dropdown-right:hover > .relic-split-dropdown-carret {
+  color: #fff;
+}
+
+.relic-split-dropdown-left{
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+}
+
+.relic-split-dropdown-right {
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+}
+
+.relic-split-dropdown-focused {
+  border-color: var(--primary-color);
+}
+
+.relic-split-dropdown-content-bubble {
+  height: 150px;
+  width: var(--input-width);
+  position: fixed;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  transition: all .3s;
+  opacity: 0;
+  z-index: -1;
+  background-color: var(--bubble-color);
+  
+}
+
+.relic-split-dropdown-content-bubble-item-container {
+  overflow-y: auto;
+  height: 120px;
+}
+.relic-split-dropdown-content-bubble-item-container::-webkit-scrollbar {
+  background-color: transparent;
+  width: 8px;
+}
+
+.relic-split-dropdown-content-bubble-item-container::-webkit-scrollbar-thumb {
+  background-color: var(--gray-scale);
+  border-radius: 50px;
+}
+
+.relic-split-dropdown-content-bubble-item-container::-webkit-scrollbar-thumb:hover {
+  background-color: #d8d8d8;
+}
+
+
+.relic-split-dropdown-content-bubble::before {
+  content: "";
+  display: block;
+  margin-right: 160px;
+  position: relative;
+  bottom: 20px;
+  border-top: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  border-bottom: 10px solid var(--bubble-color);
+}
+
+.relic-split-dropdown-content-bubble-item {
+  font-family: var(--font-family);
+  cursor: pointer;
+  padding: 3px 8px;
+  font-size: 14px;
+  transition: all .3s;
+}
+.relic-split-dropdown-content-bubble-item:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC LOADINGSPINNER       =
+*=                                                 =
+*===================================================
+*/
+
+.relic-loading-spinner-mask {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0,0,0,.3);
+  transition: all .3s;
+}
+
+.relic-loading-spinner-visible {
+  opacity: 1;
+  pointer-events: all;
+  z-index: 5000;
+}
+
+.relic-loading-spinner-invisible {
+  opacity: 0;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.relic-loading-spinner-wrapper {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.relic-loading-spinner-prompt {
+  color: #757575;
+  margin-top: 40px;
+  text-align: center;
+}
+
+
+.relic-loading-spinner {
+  width: -moz-fit-content;
+  width: fit-content;
+  animation: rotate 2s infinite linear;
+  transform-origin: center;
+}
+.relic-loading-spinner-particle-1 {
+  width: 50px;
+  height: 50px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  animation: scale-move1 ease-in-out 1s infinite both;
+}
+
+.relic-loading-spinner-particle-2 {
+  width: 35px;
+  height: 35px;
+  background-color: #0a689e;
+  border-radius: 50%;
+  animation: scale-move2 ease-in-out 1s .5s infinite both;
+  z-index: -1;
+}
+
+.relic-loading-spinner-particle-3 {
+  width: 30px;
+  height: 30px;
+  background-color: #084b72;
+  border-radius: 50%;
+  animation: scale-move3 ease-in-out 1s .8s infinite both;
+}
+
+@keyframes rotate {
+  from {
+      transform: rotate(0deg)
+  }
+
+  to {
+      transform: rotate(360deg)
+  }
+}
+
+@keyframes scale-move1 {
+  0% {
+      transform: scale(1) translateY(0px);
+  }
+
+  50% {
+      transform: scale(1.1) translateY(20px)
+  }
+
+  100% {
+      transform: scale(1) translateY(0px);
+  }
+}
+
+
+@keyframes scale-move2 {
+  0% {
+      transform: scale(1) translateX(0px)
+  }
+
+  50% {
+      transform: scale(1.1) translateX(-20px)
+  }
+
+  100% {
+      transform: scale(1) translateX(0px)
+  }
+}
+
+@keyframes scale-move3 {
+  0% {
+      transform: scale(1) translateX(0px)
+  }
+  
+  50% {
+      transform: scale(1.1) translateX(20px)
+  }   
+
+  100% {
+      transform: scale(1) translateX(0px)
+  }
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC INPUTS               =
+*=                                                 =
+*===================================================
+*/
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
+:root {
+    --input-width: 180px;
+    --input-height: 25px;
+    --input-border-radius: 2px;
+    --input-border: 1px solid #c1c1c1;
+    --font-family: Open Sans, sans-serif;
+    --disabled-input-bg: #F6FAFF;
+    --input-padding: 3px 10px;
+    --input-readonly-color: #b1b1b1;
+    --input-border-hover: #43B4E5;
+    --input-outline-focus: 1.5px solid #43b4e593;
+    --primary-color: #0F8DD6;
+    --gray-scale: #c1c1c1;
+}
+
+/* BASIC STYLE */
+.relic-input {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: var(--input-width);
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    outline-color: transparent;
+}
+
+.relic-input-password {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: 157px;
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    outline-color: transparent;
+}
+
+.relic-input-read-only {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: var(--input-width);
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    background-color: var(--disabled-input-bg);
+    color: var(--input-readonly-color);
+}
+
+.relic-input-password-read-only {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: 157px;
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    background-color: var(--disabled-input-bg);
+    color: var(--input-readonly-color);
+}
+
+.relic-input-disabled {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: var(--input-width);
+    font-family:  var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    background-color: var(--disabled-input-bg);
+    color: var(--input-readonly-color);
+    cursor: not-allowed;
+}
+
+.relic-input-password-disabled {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: 157px;
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    background-color: var(--disabled-input-bg);
+    color: var(--input-readonly-color);
+    cursor: not-allowed;
+}
+
+.relic-input-read-only:focus, .relic-input-password-read-only:focus {
+    outline: 0;
+}
+
+.relic-input:hover, .relic-select:hover, .relic-input-password:hover {
+    border-color: var(--input-border-hover)
+}
+
+.relic-input:focus, .relic-input-password:focus {
+    border-color: transparent;
+    outline: var(--input-outline-focus);
+}
+
+.relic-password-icon {
+    color: var(--gray-scale);
+    transition: all .3s;
+}
+
+.relic-password-icon:hover {
+    color: var(--primary-color);
+}
+
+
+
+/* SELECT INPUT */
+.relic-select, .relic-select-focus {
+    border: var(--input-border);
+    border-radius: var(--input-border-radius);
+    height: var(--input-height);
+    width: var(--input-width);
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    outline-color: transparent;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.relic-select-focus {
+    border-color: transparent;
+    outline: var(--input-outline-focus);
+}
+
+.relic-select-value-display, .relic-select-value-display:focus {
+    border: 0;
+    outline: 0;
+    font-family: var(--font-family);
+    appearance: none;
+    width: 110px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    
+}
+
+.relic-select-icon {
+    color: var(--primary-color);
+    font-size: 13px;
+}
+
+.relic-select-icon-disabled {
+    color: var(--gray-scale);
+    font-size: 13px;
+}
+
+
+.relic-select-icon-rotate-up {
+    animation: .2s linear forwards rotate-up
+}
+
+.relic-select-icon-rotate-down {
+    animation: .2s linear forwards rotate-down
+}
+
+.relic-select-input-items {
+    margin-top: 2px;
+    width: calc(var(--input-width) + 20px);
+    max-height: 0;
+    min-height: 0;
+    overflow-y: scroll;
+    background-color: #ffffff;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+    box-shadow: 1px 2px 5px 0px rgba(0,0,0,.2);
+    opacity: 0;
+    position: absolute;
+    z-index: 150;
+}
+
+.relic-select-input-items-expand {
+    animation: .15s linear forwards expand;
+}
+
+.relic-select-input-items-retract {
+    animation: .15s linear forwards retract;
+}
+
+.relic-select-input-items::-webkit-scrollbar {
+    background-color: transparent;
+    width: 7px;
+}
+
+.relic-select-input-items::-webkit-scrollbar-thumb {
+    background-color: var(--gray-scale);
+    border-radius: 50px;
+    cursor: pointer;
+}
+
+.relic-select-input-items::-webkit-scrollbar-thumb:hover {
+    background-color: #b3b3b3;
+}
+
+
+.relic-select-item {
+    padding: 3px 10px;
+    font-family: Open Sans, sans-serif;
+    cursor: pointer;
+    transition: all .2s;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 13px;
+}
+
+.relic-select-item:hover {
+    background-color: #f1f1f1;
+}
+
+
+.relic-select-disabled {
+    border: 1px solid var(--gray-scale);
+    border-radius: 2px;
+    height: 25px;
+    width: 200px;
+    font-family: Open Sans, sans-serif;
+    padding: 3px 10px;
+    transition: all .3s;
+    background-color: #F6FAFF;
+    color: #b1b1b1;
+    cursor: not-allowed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@keyframes rotate-up {
+    to {
+        transform: rotate(180deg)
+    }
+}
+
+@keyframes rotate-down {
+    to {
+        transform: rotate(-180deg)
+    }
+}
+
+@keyframes expand {
+    to {
+        min-height: -moz-fit-content;
+        min-height: fit-content;
+        max-height: 150px;
+        opacity: 1;
+    }
+}
+
+@keyframes retract {
+    to {
+        min-height: 0px;
+        max-height: 0px;
+        opacity: 0;
+    }
+}
+
+
+/* RADIO GROUP */
+
+.relic-radio-label  {
+    font-family: Open Sans, sans-serif;
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+
+.relic-radio-button {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid var(--primary-color);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    margin-right: 5px;
+}
+
+
+.relic-radio-button::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #fff;
+}
+
+.relic-radio-button:checked {
+    background-color: var(--primary-color);
+
+}
+
+.relic-radio-button:checked::before {
+    transform: scale(.85);
+}
+
+.relic-radio-button-disabled {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 0.15em solid var(--gray-scale);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    margin-right: 5px;
+    cursor: not-allowed;
+}
+
+
+/* CHECKBOX GROUP */
+.relic-checkbox-label {
+    font-family: Open Sans, sans-serif;
+    font-size: 13px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+
+
+.relic-checkbox-button {
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 1px solid var(--gray-scale);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    transition: all .3s;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+}
+
+.relic-checkbox-button:hover {
+    border-color: var(--primary-color);
+}
+
+
+.relic-checkbox-button::before {
+    content: "";
+    width: 0.5em;
+    height: 0.5em;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+    box-shadow: inset 1em 1em #fff;
+    transform-origin: center;
+    clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+}
+
+.relic-checkbox-button:checked {
+    background-color:var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.relic-checkbox-button:checked::before {
+    transform: scale(1);
+}
+
+
+.relic-checkbox-button-disabled {
+    appearance: none;
+    background-color: #e6e6e6;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1em;
+    height: 1em;
+    border: 1px solid var(--gray-scale);
+    border-radius: 0.15em;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+    cursor: not-allowed;
+}
+
+
+
+/* EXAMPLE CUSTOM CLASS */
+.example-custom-class {
+    border: 0;
+    border-bottom: 2px solid lightgreen;
+    padding: 5px 10px;
+    line-height: 1.3rem;
+    font-size: 1.2rem;
+    font-family: Open Sans, sans-serif
+}
+
+.example-custom-class:focus {
+    outline: 0;
+}
+
+
+.relic-example-custom-select-class {
+    border: var(--input-border);
+    border-radius: 15px;
+    height: var(--input-height);
+    min-width: 200px;
+    font-family: var(--font-family);
+    padding: var(--input-padding);
+    transition: all .3s;
+    outline-color: transparent;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC FORMS                =
+*=                                                 =
+*===================================================
+*/
+.relic-form-error {
+  animation: shake .3s linear;
+}
+
+@keyframes shake {
+  0% {
+      transform: translateX(0px)
+  }
+
+  25% {
+      transform: translateX(10px)
+  }
+
+  50% {
+      transform: translateX(-10px)
+  }
+
+  75% {
+      transform: translateX(10px)
+  }
+
+  100% {
+      transform: translateX(0px)
+  }
+}
+
+
+.relic-form-item-error-message {
+  transition: all .3s;
+  text-align: center;
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC STEPPER              =
+*=                                                 =
+*===================================================
+*/
+
+.relic-stepper-container {
+  background-color: var(--bubble-color);
+  width: 100%;
+  height: 100%;
+}
+
+.relic-stepper-body {
+  width: 100%;
+  position: relative;
+}
+
+.relic-stepper-steps, .relic-stepper-footer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.relic-stepper-steps {
+  border-bottom: 1px solid rgb(219, 219, 219);
+  height: 15%;
+  padding-top: 2px;
+}
+
+.relic-stepper-footer {
+  border-top: 1px solid rgb(219, 219, 219);
+  display: flex;
+  height: 15%;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relic-step {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* width: max-content; */
+  height: 100%;
+}
+
+circle {
+  fill: transparent;
+  stroke: #c1c1c1;
+  stroke-width: 4;
+  stroke-dasharray: 250;
+  stroke-dashoffset: 500;
+  transition: stroke .3s;
+}
+
+
+.circle-active {
+  stroke: var(--primary-color)
+}
+
+.circle-animation { 
+  animation: complete-step 0.8s linear forwards;
+}
+
+@keyframes complete-step {
+ to {
+    stroke: lightgreen;
+    stroke-dashoffset: 0;
+  }
+}
+
+.relic-step-divider {
+  width: 0px;
+  height: 2px;
+  background-color: lightgreen;
+  position: relative; 
+  bottom: 12px;
+}
+
+.expand-relic-step-divider {
+  animation: expand-divider .2s 0.8s linear forwards;
+}
+
+
+@keyframes expand-divider {
+  to {
+    width: 100%;
+  }
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC CURSOR FOLLOW        =
+*=                                                 =
+*===================================================
+*/
+
+.relic-cursor-follow {
+  position: absolute;
+  border-radius: 50%;
+  border-style: dashed;
+  transition: border-color .3s, border-width .3s width .3s, height .3s opacity .4s;
+  left: -250px;
+  pointer-events: none;
+}
+
+.relic-cursor-follow-pulse {
+  animation: cursor-pulse 1s linear infinite forwards;
+}
+
+.relic-cursor-follow-spin {
+  animation: cursor-spin 2s linear infinite forwards;
+}
+
+
+@keyframes cursor-pulse {
+  0% {
+    width: 50px;
+    height: 50px;
+  }
+
+  50% {
+    width: 60px;
+    height: 60px;
+  }
+
+  100% {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+
+@keyframes cursor-spin {
+  100% {
+    transform: rotate(360deg)
+  }
+}
+
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC MODAL                =
+*=                                                 =
+*===================================================
+*/
+
+.relic-modal {
+  box-shadow: 0px 1px 4px 0px rgba(0,0,0,.5);  
+  border-radius: 2px;
+  position: absolute;
+  background-color: #fff;
+  padding: 5px;
+  transition: all .25s;
+  transform: scale(0);
+}
+
+.relic-modal-shrink {
+  transform: scale(0);
+  transform-origin: center;
+  opacity: 0;
+}
+
+.relic-modal-show {
+  transform: scale(1);
+  transform-origin: center;
+  opacity: 1;
+}
+
+.relic-modal-header {
+  height: 10%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e9e9e9;
+}
+
+
+.relic-modal-close-icon {
+  cursor: pointer;
+  font-size: 1.3rem;
+  color: #c0c0c0;
+  transition: all .3s;
+  padding: 5px;
+}
+
+.relic-modal-close-icon:hover {
+  color: #000;
+}
+
+
+.relic-modal-body {
+  height: 75%;
+  width: 100%;
+}
+
+.relic-modal-footer {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  border-top: 1px solid #e9e9e9;
+  gap: 5px;
+}
+
+.relic-modal-backdrop {
+  background-color: rgba(0,0,0,.1);
+  top: 0;
+  bottom:0;
+  left: 0;
+  right: 0;
+  position: absolute;
+  transition: all .25s;
+}
+
+
+.relic-modal-backdrop-visible {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.relic-modal-backdrop-invisible {
+  opacity: 0;
+  pointer-events: none;
+}
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC NOTIFICATION         =
+*=                                                 =
+*===================================================
+*/
+
+.relic-notification-portal-container-top-right {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.relic-notification-portal-container-top-left {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+}
+
+.relic-notification-portal-container-bottom-left {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+}
+
+.relic-notification-portal-container-bottom-right {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+}
+
+.relic-notification-container {
+  overflow: hidden;
+  max-height: 130px;
+  transition: max-height 0.2s 0.2s ease-out;
+}
+
+.relic-notification-container:not(:last-child) {
+  margin-bottom: 8px;
+}
+
+.relic-notification-container-shrink {
+  max-height: 0;
+}
+
+.relic-notification {
+  width:250px;
+  max-height: 100px;
+  overflow: hidden;
+  padding: 10px;
+  z-index: 99;
+  font-weight: bold;
+  position: relative;
+  transition: transform 0.2s ease-out;
+  border-radius: 4px;
+}
+
+.relic-notification-show-top-right, .relic-notification-show-bottom-right {
+  animation-name: show-right;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+.relic-notification-hide-top-right, .relic-notification-hide-bottom-right {
+  transform: translateX(150%);
+  flex: 0;
+}
+@keyframes show-right {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+
+.relic-notification-show-top-left, .relic-notification-show-bottom-left {
+  animation-name: show-left;
+  animation-duration: 0.2s;
+  animation-timing-function: ease-in-out;
+}
+.relic-notification-hide-top-left, .relic-notification-hide-bottom-left {
+  transform: translateX(-150%);
+  flex: 0;
+}
+@keyframes show-left {
+  from {
+    transform: translateX(-150%);
+  }
+
+  to {
+    transform: translateX(0%);
+  }
+}
+
+
+
+.relic-notification-success {
+  background-color: lightgreen;
+}
+.relic-notification-info {
+  background-color: #0F8DD6;
+}
+.relic-notification-warning {
+  background-color: #F8961E;
+}
+.relic-notification-error {
+  background-color: #E01E37;
+}
+
+
+.relic-notification-icon {
+  font-size: 1.8rem;
+}
+.relic-notification-icon-success, .relic-notification-icon-info, 
+.relic-notification-icon-warning, .relic-notification-icon-error {
+  color: #fff;
+}
+
+
+.relic-notification-header {
+  width: 100%;
+  height: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgb(255, 255, 255);
+  padding-bottom: 5px;
+}
+.relic-notification-header-container {
+  display: flex;
+  align-items: center;
+  gap: 5px; 
+  font-weight: bold; 
+  color: #fff;
+  padding-left: 5px;
+}
+.relic-notification-close-icon {
+  font-size: 1.3rem;
+  cursor: pointer;
+  color: #fff;
+  transition: color .3s;
+}
+.relic-notification-close-icon:hover {
+  color: #000;
+}
+
+
+.relic-notification-body {
+  padding: 5px;
+  font-size: 0.8rem;
+  text-align:start;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  color: #fff;
+}
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC SKELETON             =
+*=                                                 =
+*===================================================
+*/
+
+.container, .line-wrapper {
+  display: flex;
+}
+.container {
+  min-width: 400px;
+}
+.line-wrapper {
+  width: 100%;
+  flex-direction: column;
+}
+.test, .line {
+  background: linear-gradient(90deg, #b8b8b8, #e6e6e6);
+  border-radius: 4px;
+  background-size: 600% 100%;
+  animation: color-animate 1s linear infinite;
+  margin: 5px 2px;
+}
+.test {
+  width: 80px;
+  height: 80px;
+}
+.line {
+  width: 100%;
+  height: 20px;
+}
+
+@keyframes color-animate {
+   0% {
+     background-position: 0%;
+   }
+
+   50% {
+    background-position: 100%;
+  }
+
+   100% {
+    background-position: 0%;
+   }
+}
