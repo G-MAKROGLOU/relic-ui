@@ -9,8 +9,8 @@ export type LoadingSpinnerProps = {
      */
     component?: JSX.Element;
     /**
-     * A custom message to show under the spinner. If ommited the default will be use. 
-     * If it is a string the default styling is applied. If it is a JSX element they styling is up 
+     * A custom message to show under the spinner. If ommited the default will be used. 
+     * If it is a string the default styling is applied. If it is a JSX element the styling is up 
      * to you. 
      */
     prompt?: string | JSX.Element;

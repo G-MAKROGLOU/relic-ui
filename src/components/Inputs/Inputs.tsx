@@ -156,7 +156,7 @@ export const NumberInput = React.forwardRef( ({
     placeholder="",
     layout="horizontal",
     id,
-    customClass,
+    className,
     name
 }: NumberInputProps, ref: React.Ref<HTMLInputElement> ) => {
 
@@ -167,10 +167,11 @@ export const NumberInput = React.forwardRef( ({
         disabled,
         readOnly,
         id,
-        className: customClass ? customClass : 
+        className: className ? className : 
                    readOnly ? 'relic-input-read-only' : 
                    disabled ? 'relic-input-disabled' : 'relic-input',
-        name: name ? name : ''
+        name: name ? name : '',
+        step: 'any'
     }
 
     const localOnChange = (e:React.ChangeEvent<HTMLInputElement>) => {

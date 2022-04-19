@@ -25,10 +25,8 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
 
     constructor(props:FormProps){
         super(props)
-        
     }
 
-    
     form = React.createRef<HTMLFormElement>()
 
     setFormItems = (items:React.ReactNode[]):void => {
@@ -38,8 +36,6 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
     setHasErrors = (hasErrors:boolean):void => {
         this.setState({hasErrors})
     }
-
-
 
     addRefsToFormValidations = (name:string, ref: React.Ref<any>) => {
         this.setState((prev:any) => {
@@ -141,11 +137,13 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
             })
             return obj;
         }
-        
     }
 
 
     isFormValid = async (formData:any):Promise<boolean> => {
+        console.log(this.state.formValidations)
+        if(this!.state!.formValidations!.length === 0) return true;
+
         let data = this.prepareFormData(this.form.current);
         let promises:Promise<boolean>[] = []
 
@@ -176,7 +174,7 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
 
     gatherValidations = (arr:NameWithValidation[], formItems:React.ReactNode[]) => {
         formItems.forEach((item:React.ReactNode) => {
-            if(React.isValidElement(item)){
+            if(React.isValidElement(item) && item.props.validation){
                 let nameValidation:NameWithValidation = {
                     name: item!.props.name, 
                     validation: item!.props.validation
@@ -353,7 +351,3 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
 
     return null
 }
-
-
-
-    

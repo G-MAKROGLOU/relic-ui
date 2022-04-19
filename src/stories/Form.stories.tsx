@@ -37,16 +37,13 @@ export default {
 
   export const BasicForm = ({...args}:FormProps) => {
 
-
-
-
     let selectItems = [
         {key: '1', value: 'Item 1'},
         {key: '2', value: 'Item 2'}
     ]
 
     let checkboxItems = [
-        {key: '1', value: 'Remember me'},
+        {key: '1', value: 'Remember Me'},
         {key: '2', value: 'Log Out'}
     ]
 
@@ -68,7 +65,7 @@ export default {
     const numInputValidation = (e:ValidationEmittedValue) => {
         let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
-            if(/^[0-9]+$/.test(value)) resolve(true)
+            if(/^[0-9](\.[0-9]+)?$/.test(value)) resolve(true)
             reject("Only numbers")
         })
     }
@@ -114,6 +111,8 @@ export default {
             reject("One of Remember me or Log Out is required!")
         })
     }
+
+    
 
     return <FormProvider {...args} >
             <div>
@@ -168,3 +167,75 @@ export default {
             </div>
     </FormProvider>
 }
+
+
+
+
+
+export const BasicFormWithoutValidations = ({...args}:FormProps) => {
+
+    let selectItems = [
+        {key: '1', value: 'Item 1'},
+        {key: '2', value: 'Item 2'}
+    ]
+
+    let checkboxItems = [
+        {key: '1', value: 'Remember Me'},
+        {key: '2', value: 'Log Out'}
+    ]
+
+    let radioItems = [
+        {key: '1', value: 'Male'},
+        {key: '2', value: 'Female'}
+    ]
+
+
+
+    return <FormProvider {...args} >
+            <div>
+                <div style={{display: 'flex'}}>
+                    <FormItem 
+                        inputType="text"
+                        label="Username" 
+                        name="username" 
+                    />
+                    <FormItem 
+                        inputType="password"
+                        label="Password" 
+                        name="password" 
+                    />
+                </div>
+            </div>
+            <div style={{display: 'flex'}}>
+                <FormItem 
+                    inputType="number"
+                    label="Age" 
+                    name="age" 
+                />
+                <FormItem
+                    inputType="select"
+                    label="Option"
+                    name="option"
+                    items={selectItems}
+                />
+            </div>
+            
+            <FormItem
+                inputType="checkbox"
+                name="logoutOptions"
+                items={checkboxItems}
+                layout="horizontal"
+            />
+            <FormItem
+                inputType="radio"
+                label="Gender"
+                name="gender"
+                items={radioItems}
+                layout="horizontal"
+            />
+            <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <Button content="Submit" type="primary" buttonType="submit" />
+            </div>
+    </FormProvider>
+}
+

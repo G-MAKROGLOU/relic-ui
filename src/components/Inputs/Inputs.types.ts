@@ -187,7 +187,7 @@ export type NumberInputProps = {
     /**
      * An optional className to pass to the input to override its' style
      */
-    customClass?: string;
+    className?: string;
 }
 
 
