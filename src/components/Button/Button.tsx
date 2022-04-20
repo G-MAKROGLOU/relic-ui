@@ -1,6 +1,6 @@
 import React from "react";
 import {ButtonProps} from './Button.types'
-
+import ButtonLoadingSpinner from "../Internals/ButtonLoadingSpinner";
 /**
  * A button component with different variants to implement click events
  */
@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = ({
           {icon && <span style={{marginRight: 5}}>{icon}</span>}
           {content}
         </>
-      : "Loading..."
+      : <ButtonLoadingSpinner/>
       }
 
       

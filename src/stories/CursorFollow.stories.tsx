@@ -1,7 +1,4 @@
 import React from "react";
-import {   
-    CursorFollowProps
-} from "../components/CursorFollow/CursorFollow.types";
 
 import {WithCursorFollow, useCursorFollow} from '../components/CursorFollow/CursorFollow'
 
@@ -9,7 +6,7 @@ import {WithCursorFollow, useCursorFollow} from '../components/CursorFollow/Curs
 export const View = ({...args}) => {
     return (
         <WithCursorFollow {...args}>
-            <div style={{width: '100vw', height: '100vh', display: 'flex', flexWrap: 'wrap', gap: 10}}>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10}}>
                 <NoCursorPart/>
                 <PulsingCircle/>
                 <BiggerBorderWidth/>

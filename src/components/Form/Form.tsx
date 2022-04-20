@@ -141,7 +141,6 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
 
 
     isFormValid = async (formData:any):Promise<boolean> => {
-        console.log(this.state.formValidations)
         if(this!.state!.formValidations!.length === 0) return true;
 
         let data = this.prepareFormData(this.form.current);

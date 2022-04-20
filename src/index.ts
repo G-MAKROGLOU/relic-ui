@@ -16,6 +16,7 @@ export * from './components/CursorFollow/CursorFollow'
 export * from './components/Modal/Modal'
 export * from './components/Notification/Notification'
 export * from './components/Skeleton/Skeleton'
+export * from './components/Tabs/Tabs'
 
 
 

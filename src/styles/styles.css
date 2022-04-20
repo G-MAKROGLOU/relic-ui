@@ -39,6 +39,32 @@ body::-webkit-scrollbar-thumb {
   --bubble-color: rgb(248, 248, 248)
 }
 
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC INTERNALS            =
+*=                                                 =
+*===================================================
+*/
+
+
+.relic-button-loading-spinner {
+  animation: button-spinner 1s linear infinite;
+  transform-origin: center;
+  display: flex;
+  align-items: center;
+  width: max-content;
+
+}
+
+@keyframes button-spinner {
+
+  to {
+    transform: rotateZ(360deg)
+  }
+}
+
 /**
 *===================================================
 *=                                                 =
@@ -57,6 +83,9 @@ body::-webkit-scrollbar-thumb {
   border-width: 1px;
   border-style: solid;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content:space-evenly;
 }
 
 .relic-btn:disabled {
@@ -1327,12 +1356,13 @@ circle {
 */
 
 .relic-cursor-follow {
-  position: absolute;
+  position: fixed;
   border-radius: 50%;
   border-style: dashed;
   transition: border-color .3s, border-width .3s width .3s, height .3s opacity .4s;
   left: -250px;
   pointer-events: none;
+  z-index: 5000;
 }
 
 .relic-cursor-follow-pulse {
@@ -1671,3 +1701,369 @@ circle {
     background-position: 0%;
    }
 }
+
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC ICON BUTTON          =
+*=                                                 =
+*===================================================
+*/
+/*================ DEFAULT ================*/
+.relic-icon-btn {
+  cursor: pointer;
+  color: #fff;
+  transition: all .3s;
+  border-width: 1px;
+  border-style: solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+
+.relic-icon-btn-square {
+  border-radius: 2px;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+}
+
+
+.relic-icon-btn-round {
+  width: 35px;
+  height: 35px;
+  border-radius: 50px;
+}
+
+.relic-icon-btn:disabled {
+  cursor: not-allowed;
+  background-color: #c1c1c1;
+  color: #999999;
+  border-color: #c1c1c1;
+}
+.relic-icon-btn-loading {
+  transition: all .3s;
+  opacity: .5;
+  pointer-events: none;
+}
+
+/*================ COLOR SCHEMES ================*/
+
+/* PRIMARY */
+.relic-icon-btn-primary {
+  background-color: #0f8dd6;
+  border-color: #0f8dd6;
+}
+.relic-icon-btn-primary:hover {
+  background-color: #035B95;
+  border-color: #035B95;
+}
+.relic-icon-btn-primary:active  {
+  background-color: #0f8dd6;
+  border-color: #0f8dd6;
+}
+
+/* SECONDARY */
+.relic-icon-btn-secondary {
+  background-color: #75D1D8;
+  border-color: #75D1D8;
+}
+.relic-icon-btn-secondary:hover {
+  background-color: #A471D1;
+  border-color: #A471D1;
+}
+.relic-icon-btn-secondary:active {
+  background-color: #75D1D8;
+  border-color: #75D1D8;
+}
+
+/* SUCCESS */
+.relic-icon-btn-success {
+  background-color: #99e2b4;
+  border-color: #99e2b4;
+}
+.relic-icon-btn-success:hover {
+  background-color: #78c6a3;
+  border-color: #78c6a3;
+}
+.relic-icon-btn-success:active {
+  background-color: #99e2b4;
+  border-color: #99e2b4;
+}
+
+/* DANGER */
+.relic-icon-btn-danger {
+  background-color: #e01e37;
+  border-color: #e01e37;
+}
+.relic-icon-btn-danger:hover {
+  background-color: #8b1628;
+  border-color: #8b1628;
+}
+.relic-icon-btn-danger:active {
+  background-color: #e01e37;
+  border-color: #e01e37;
+}
+
+/* INFO */
+.relic-icon-btn-info {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+}
+.relic-icon-btn-info:hover {
+  background-color: #42a5f5;
+  border-color: #42a5f5;
+}
+.relic-icon-btn-info:active {
+  background-color: #64b5f6;
+  border-color: #64b5f6;
+}
+
+/* WARNING */
+.relic-icon-btn-warning {
+  background-color: #f8961e;
+  border-color: #f8961e;
+}
+.relic-icon-btn-warning:hover{
+  background-color: #f3722c;
+  border-color: #f3722c;
+}
+.relic-icon-btn-warning:active {
+  background-color: #f8961e;
+  border-color: #f8961e;
+}
+
+/* OUTLINED */
+.relic-icon-btn-outlined {
+  background-color: transparent;
+  border-color: #0f8dd6;
+  color: #0f8dd6;
+}
+.relic-icon-btn-outlined:hover{
+  background-color: transparent;
+  border-color: #035B95;
+  color: #035B95;
+}
+.relic-icon-btn-outlined:active {
+  background-color: transparent;
+  border-color: #0f8dd6;
+  color: #0f8dd6;
+}
+
+
+
+
+/**
+*===================================================
+*=                                                 =
+*=           STYLES FOR RELIC TABS                 =
+*=                                                 =
+*===================================================
+*/
+
+/* TAB BAR VARIANTS */
+.relic-tabbar {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.relic-tabbar-square  {
+  border-bottom: 1px solid #c8c8c8;
+}
+.relic-tabbar-pills  {
+  border-bottom: 1px solid #c8c8c8;
+  padding-bottom: 5px;
+}
+
+/* TAB VARIANTS */
+.relic-tab {
+  width: 80px;
+  cursor: pointer;
+}
+
+.relic-tab-square {
+    padding: 10px;
+    border-top: 1px solid #c8c8c8;
+    border-left: 1px solid #c8c8c8;
+    border-right: 1px solid #c8c8c8;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;  
+    margin-right: 1px;
+    transition: border-color .3s;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.relic-tab-square:not(.relic-tab-square-active):hover {
+  border-color: var(--primary-color);
+}
+
+.relic-tab-square-active {
+  border-color: var(--primary-color);
+  border-width: 2px;
+}
+
+.relic-tab-pills {
+   padding: 10px;
+   background-color: #f1f1f1; 
+   border-radius: 20px;
+   margin-right: 3px;
+   transition: background-color .3s;
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+}
+
+.relic-tab-pills:not(.relic-tab-pills-active):hover {
+  background-color: #888888;
+  color: #fff;
+}
+
+
+.relic-tab-pills-active {
+  background-color: var(--primary-color); 
+  color: #fff;
+}
+
+
+.relic-tab-underline {
+  margin-right: 5px;
+  border-bottom: 2px solid #c8c8c8;
+  line-height: 28px;
+  transition: all .3s;
+}
+
+.relic-tab-underline::after {
+  content: '';
+  width: 0px;
+  height: 2px;
+  display: block;
+  background-color: var(--primary-color);
+  transition: all .3s;
+  position: relative;
+  top: 1.5px;
+}
+
+
+.relic-tab-underline-active.relic-tab-underline::after {
+  width: 100%;
+}
+
+.relic-tab-underline:not(.relic-tab-underline-active):hover {
+  border-color: #888888;
+}
+
+
+.relic-tab-boxed {
+  padding: 10px;
+  margin-right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relic-tab-boxed-active {
+  color: #fff;
+}
+
+.relic-tab-boxed-indexer {
+  background-color: var(--primary-color);
+  width: 100px;
+  height: 40px;
+  position: fixed;
+  z-index: -1;
+  border-radius: 5px;
+  transition: all .3s;
+}
+
+
+
+/* TAB LABEL */
+.relic-tab-label {
+  pointer-events: none;
+}
+
+/* TAB CLOSE ICON */
+.relic-tab-close-icon {
+  color: #c8c8c8;
+  transition: all .3s;
+}
+.relic-tab-close-icon:hover {
+  color: #000;
+}
+
+.relic-tab-close-icon-underline {
+  margin-left: 20px;
+}
+
+/* ADD TAB BUTTON */
+.relic-add-tab-button-square {
+  padding: 10px;
+  border-top: 1px solid #c8c8c8;
+  border-left: 1px solid #c8c8c8;
+  border-right: 1px solid #c8c8c8;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;  
+  cursor: pointer;
+  transition: all .3s;
+}
+.relic-add-tab-button-square:hover {
+  border-color: var(--primary-color);
+}
+
+.relic-add-tab-button-pills {
+  padding: 10px;
+  background-color: #f1f1f1; 
+  border-radius: 20px;
+  margin-right: 3px;
+  transition: background-color .3s;
+  cursor: pointer;
+  transition: all .3s;
+}
+
+.relic-add-tab-button-pills:hover {
+  background-color: #888888;
+}
+
+.relic-add-tab-button-underline {
+  cursor: pointer;
+}
+
+.relic-add-tab-button-boxed {
+  padding: 8px;
+  background-color: var(--primary-color);
+  color: #fff;
+  border-top-right-radius: 4px;
+  border-top-left-radius: 4px;
+  cursor: pointer;
+}
+
+
+.relic-add-tab-button-icon {
+  font-weight: bold;
+  transition: all .3s;
+  pointer-events: none;
+}
+
+
+.relic-add-tab-button-underline:hover .relic-add-tab-button-icon {
+  color: var(--primary-color);
+}
+
+.relic-add-tab-button-pills:hover .relic-add-tab-button-icon {
+  color: #fff;
+}
+
+.relic-add-tab-button-boxed:hover .relic-add-tab-button-icon,
+.relic-add-tab-button-square:hover .relic-add-tab-button-icon {
+  color: #000;
+}
+
