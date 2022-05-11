@@ -2,11 +2,11 @@ import React from "react";
 
 export type TabsProps = {
     tabs: TabItemProps[];
-    children?: React.ReactChild | React.ReactChildren | never[];
-    isLazy?: boolean
+    children?: React.ReactChild | React.ReactChildren | any;
     tabStyle?: "square" | "pills" | "underline" | "boxed";
     isEditable?: boolean;
-    extras?: TabsExtrasProps
+    extras?: TabsExtrasProps;
+    maxVisibleTabs?: number;
     onAdd?: () => void;
     onClose?: (tab:TabItemProps) => void;
     onChange?: (prevTab: TabItemProps, nextTab: TabItemProps) => void;

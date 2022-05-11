@@ -2067,3 +2067,105 @@ circle {
   color: #000;
 }
 
+
+
+/* TAB EXTRAS */
+.relic-tab-extras-right, .relic-tab-extras-left {
+  width: max-content; 
+  display: flex; 
+  justify-content: space-between;
+}
+
+.relic-tab-extras-left {
+  margin-right: 5px;
+}
+
+.relic-tab-extras-right {
+  margin-left: 5px;
+}
+
+
+/* TAB SHOW MORE */
+.relic-tab-show-more-wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.relic-tab-show-more {
+  padding: 10px;
+  cursor: pointer;
+ 
+}
+
+.relic-tab-show-more-icon {
+  font-size: 1.3rem;
+  pointer-events: none;
+}
+
+.relic-tab-hidden-tabs {
+  display: none;
+  width: max-content;
+  background-color: var(--bubble-color);
+  max-height: 150px;
+  top: 40px;
+  left: 10px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  border-radius: 3px;
+}
+
+
+.relic-tab-hidden-tabs::before {
+  content: '';
+  display: block;
+  border-top: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 8px solid var(--bubble-color);
+  border-left: 8px solid transparent;
+  margin-right: 100%;
+  position: fixed;
+  top: 41px;
+}
+
+.relic-tab-hidden-tabs::-webkit-scrollbar {
+  background: transparent;
+  width: 5px;
+}
+
+.relic-tab-hidden-tabs::-webkit-scrollbar-thumb {
+  background: var(--primary-color);
+  border-radius: 50px;
+}
+
+.relic-hidden-tab {
+  cursor: pointer;
+  padding: 10px;
+  transition: all .3s;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.relic-hidden-tab:hover {
+  background-color: var(--primary-color);
+}
+
+
+.relic-hidden-tab-active {
+  background: var(--primary-color);
+}
+
+
+.relic-hidden-active-tab-icon {
+  color: #fff;
+  margin-left: 5px;
+}
+
+/* TAB CONTENT */
+.relic-tab-content {
+  width: 100%; 
+  min-height: calc(100vh - 50px); 
+  overflow-y: auto; 
+}
