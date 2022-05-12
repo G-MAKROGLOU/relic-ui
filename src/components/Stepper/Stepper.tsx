@@ -134,19 +134,19 @@ export const Stepper =  React.forwardRef( ({
             <div className="relic-stepper-steps">
                 {steps.map((step:Step, index:number) => (
                     <div key={index} className="relic-step">
-                        <div>
+                        <div style={{position: 'relative', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                             <svg height="60" width="60">
                                 <circle id={`step-${step.key}`} cx="30" cy="38" r="20" />
                             </svg>
-                            <div style={{position: 'relative', width: 40, bottom: 38, left: 10, textAlign: 'center'}}>
+                            <div style={{position: 'relative', width: 40, bottom: 30, left: 0, textAlign: 'center'}}>
                                 {step.icon ? step.icon : step.key}
                             </div>
-                            <div style={{position: 'relative', bottom: 20, textAlign: 'center', fontSize: '0.9rem', color: '#424242'}}>{step.title}</div>
+                            <div style={{position: 'absolute', bottom: 2, textAlign: 'center', fontSize: '0.9rem', color: '#424242', width: 'max-content'}}>{step.title}</div>
                         </div>
                         {
                             index < steps.length - 1
                             ? <div style={{display: 'flex', flexDirection: 'column'}}>
-                                <div style={{width: (containerWidth! / steps.length) - ((steps.length * 40) / steps.length), height: 2, backgroundColor: '#c1c1c1', position: 'relative', bottom: 10}}/>
+                                <div style={{width: (containerWidth! / steps.length) - ((steps.length * 40) / steps.length), height: 2, backgroundColor: '#c1c1c1', position: 'relative'}}/>
                                 <div id={`relic-step-divider-${step.key}`} className="relic-step-divider" />
                              </div>
                             : null

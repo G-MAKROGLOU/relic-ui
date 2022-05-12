@@ -18,6 +18,8 @@ export * from './components/Notification/Notification'
 export * from './components/Skeleton/Skeleton'
 export * from './components/Tabs/Tabs'
 export * from './components/IconButton/IconButton'
+export * from './components/MenuBar/MenuBar'
+export * from './components/Tooltip/Tooltip'
 
 
 

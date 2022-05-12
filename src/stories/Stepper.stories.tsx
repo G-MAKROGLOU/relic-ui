@@ -9,7 +9,7 @@ import {Step, StepperProps} from '../components/Stepper/Stepper.types'
 let steps = [
   {
       key: 1,
-      title: 'Step 1',
+      title: 'Step Title 1111',
       content: <>Content of Step 1</>,
       icon: <AiFillApi/>,
       onStepChange: (prev:Step, next:Step) => console.log(prev, next)
