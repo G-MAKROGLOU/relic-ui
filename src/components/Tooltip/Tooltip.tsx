@@ -1,7 +1,7 @@
 import React from 'react'
 import { TooltipProps } from './Tooltip.types'
 
-export default function Tooltip({
+export function Tooltip({
     children,
     placement="right",
     content=""
