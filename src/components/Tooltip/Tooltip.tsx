@@ -44,7 +44,7 @@ export function Tooltip({
 
     return (
         <>
-            <div onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+            <div style={{width: 'max-content'}} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
                 {children}
             </div>
             <div className={`relic-tooltip relic-tooltip-${placement}`} ref={tooltip}>
