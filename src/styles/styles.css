@@ -2366,6 +2366,11 @@ circle {
 *===================================================
 */
 
+.relic-tooltip-wrapper {
+  width: max-content; 
+  position: relative;  
+}
+
 .relic-tooltip {
   padding: 5px;
   background-color: rgb(32, 32, 32);

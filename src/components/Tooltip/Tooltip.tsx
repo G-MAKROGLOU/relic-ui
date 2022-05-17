@@ -7,32 +7,38 @@ export function Tooltip({
     content=""
 }: TooltipProps){
     const tooltip = React.useRef<HTMLDivElement>(null)
+    const tooltipWrapper = React.useRef<HTMLDivElement>(null)
 
 
     const onMouseOver = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-        let target = e.target as HTMLDivElement;
-        let {x,y} = target.getBoundingClientRect();
+        let target = tooltipWrapper.current as HTMLDivElement;
+        
+        let {width, height} = tooltip!.current!.getBoundingClientRect();
+        let targetRect = target.getBoundingClientRect();
+        
         if(placement === 'top'){
-            tooltip!.current!.style.bottom = window.innerHeight - y + 5 + "px"
+            tooltip!.current!.style.bottom =  targetRect.height + 5 + "px"
         }
 
         if(placement === 'right'){
-            tooltip!.current!.style.top = y + "px"
-            tooltip!.current!.style.left = (window.innerWidth - x + 5) + "px"
+            tooltip!.current!.style.bottom = (targetRect.height / 2) - (height / 2) + "px"
+            tooltip!.current!.style.left = targetRect.width + 5 + "px"
         }
 
 
         if(placement === 'bottom'){
-            tooltip!.current!.style.top = window.innerHeight - y + 5 + "px"
+            tooltip!.current!.style.top = targetRect.height + 5 + "px"
         }
 
 
         if(placement === 'left'){
-            tooltip!.current!.style.top = y + "px"
-            tooltip!.current!.style.right = (window.innerWidth - x + 5) + "px"
+            tooltip!.current!.style.bottom = (targetRect.height / 2) - (height / 2) + "px"
+            tooltip!.current!.style.left =  -width - 5 + "px"
         }
         
         tooltip!.current!.style.opacity = "1";
+        
+        
     }
 
 
@@ -43,13 +49,11 @@ export function Tooltip({
 
 
     return (
-        <>
-            <div style={{width: 'max-content'}} onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
-                {children}
-            </div>
+        <div ref={tooltipWrapper} className="relic-tooltip-wrapper" onMouseOver={onMouseOver} onMouseLeave={onMouseLeave}>
+            {children}
             <div className={`relic-tooltip relic-tooltip-${placement}`} ref={tooltip}>
                 {content}
             </div>
-        </>
+        </div>
     )
 }
