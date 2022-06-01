@@ -1,6 +1,5 @@
 import React from 'react'
 import {MenuBarProps, MenuItemProps, ReducerStateProps, ReducerActionProps} from './MenuBar.types'
-import { AiFillCaretDown, AiFillCaretUp } from 'react-icons/ai'
 
 
 const initialState:ReducerStateProps = {}
@@ -20,7 +19,7 @@ const reducer = (state:ReducerStateProps[], action:ReducerActionProps) => {
 }
 
 
-export default function MenuBar({
+export function MenuBar({
     display='left',
     menuItems=[],
     onItemClick=(item:MenuItemProps) => console.log(item),
