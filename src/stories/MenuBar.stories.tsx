@@ -1,7 +1,7 @@
 import React from "react";
 import { Story } from "@storybook/react";
 import useState from 'storybook-addon-state';
-import MenuBar  from "../components/MenuBar/MenuBar";
+import {MenuBar}  from "../components/MenuBar/MenuBar";
 import { MenuBarProps, MenuItemProps } from "../components/MenuBar/MenuBar.types";
 import {Button} from '../components/Button/Button'
 import { useArgs } from '@storybook/client-api';
