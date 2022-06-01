@@ -65,7 +65,7 @@ export default {
     const numInputValidation = (e:ValidationEmittedValue) => {
         let {target: {value}}:any = e 
         return new Promise((resolve, reject) => {
-            if(/^[0-9](\.[0-9]+)?$/.test(value)) resolve(true)
+            if(/^[0-9]{1,}(\.[0-9]+)?$/.test(value)) resolve(true)
             reject("Only numbers")
         })
     }
@@ -102,16 +102,24 @@ export default {
         let {target: {value}}:any = e 
         let requiredValues:boolean[] = []
         return new Promise((resolve, reject) => {
+            if(!value.length) reject("At least one option is required!")
             value.forEach((val:any) => {
-                Object.values(val).forEach((v:any) => {
-                    if(!v) requiredValues.push(v)
-                })
+                requiredValues.push(val)
             })
-            if(requiredValues.length !== value.length) resolve(true)
-            reject("One of Remember me or Log Out is required!")
+            resolve(true)
+            
         })
     }
 
+
+
+    const fileValidation = (e:ValidationEmittedValue):Promise<boolean> => {
+        let {target: {value}}:any = e
+        return new Promise((resolve, reject) => {
+            if(!value || value.length === 0) reject("One or more files are required!")
+            resolve(true)
+        })
+    }
     
 
     return <FormProvider {...args} >
@@ -161,6 +169,14 @@ export default {
                 items={radioItems}
                 layout="horizontal"
                 validation={radioValidation}
+            />
+            <FormItem
+                inputType="file"
+                label="Select File"
+                name="fileUpload"
+                validation={fileValidation}
+                allowMultiple={false}
+                allowDnD={true}
             />
             <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Button content="Submit" type="primary" buttonType="submit" />

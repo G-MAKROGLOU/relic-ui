@@ -1212,6 +1212,68 @@ body::-webkit-scrollbar-thumb {
 }
 
 
+
+.relic-file-upload {
+  display: flex; 
+  flex-direction: column; 
+  border: 2px dashed var(--primary-color); 
+  padding: 10px; 
+  border-radius: 3px; 
+  cursor: pointer; 
+  width: 280px; 
+  height: 90px;
+}
+
+
+.relic-file-upload-label {
+  pointer-events: none; 
+  width: 100%; 
+  text-align: center;
+  font-weight: bold;
+}
+
+
+.relic-file-upload-preview-list {
+  width: 100%; 
+  display: flex ;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  gap: 10px;
+  padding-top: 5px;
+  overflow-y: scroll;
+  height: 70px
+}
+
+
+.relic-file-upload-preview-list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 5px;
+}
+
+.relic-file-upload-preview-list::-webkit-scrollbar-thumb {
+  background-color: var(--primary-color);
+  border-radius: 50px;
+}
+
+.relic-file-upload-preview {
+  width: 50px; 
+  height: 50px; 
+  border-radius: 4px; 
+  border: 1px solid lightgray; 
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+}
+
+.relic-file-upload-preview-image {
+  width: 100%;
+}
+
+.relic-file-upload-preview-icon {
+  font-size: 2rem;
+}
+
 /**
 *===================================================
 *=                                                 =
@@ -1249,9 +1311,31 @@ body::-webkit-scrollbar-thumb {
 .relic-form-item-error-message {
   transition: all .3s;
   text-align: center;
+  color: tomato; 
+  font-family: Open Sans, sans-serif; 
+  font-size: 12px;
+  margin-top: 2px;
+  width: 300px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: no-wrap;
 }
 
+.relic-form-items {
+  margin: '10px 0'; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+  justify-content: center;
+}
 
+.relic-form-item-password {
+  margin: 10px 0; 
+  display: flex; 
+  flex-direction: column; 
+  align-items: flex-start; 
+  justify-content: center;
+}
 
 /**
 *===================================================
@@ -2432,3 +2516,6 @@ circle {
   top: -10px;
   left: 45%;
 }
+
+
+

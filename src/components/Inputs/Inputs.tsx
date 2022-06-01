@@ -1,5 +1,15 @@
 import React from "react";
 import {FaChevronDown, FaEyeSlash, FaEye} from 'react-icons/fa'
+import {
+    GrDocumentCsv, 
+    GrDocumentTxt, 
+    GrDocumentExcel, 
+    GrDocumentPdf,  
+    GrDocumentImage, 
+    GrDocumentText, 
+    GrDocumentWord, 
+    GrDocumentZip
+} from 'react-icons/gr'
 
 import {
     TextInputProps,
@@ -7,7 +17,8 @@ import {
     NumberInputProps,
     SelectProps,
     RadioProps,
-    CheckboxProps
+    CheckboxProps,
+    FileUploadProps
 } from './Inputs.types'
 
 
@@ -446,5 +457,113 @@ export const Checkbox = ({
 
 
 
+
+export const FileUpload = React.forwardRef( ({
+    allowMultiple=true,
+    onChange,
+    label="File Upload",
+    name,
+    allowDnD=false
+}:FileUploadProps, ref: React.Ref<HTMLDivElement>) => {
+    const [fileList, setFileList] = React.useState<JSX.Element[]>([])
+
+    const previewListRenderer = (files:File[]) => {
+        let previews:JSX.Element[] = []
+        let promises:Promise<string>[] = []
+        files.forEach(file => {
+            
+            let extension = file.name.split('.').at(-1)
+
+            if(file.type.includes('image')){
+                promises.push(imagePromise(file))
+            }
+            else if(extension === 'txt') {
+                previews.push(<div className="relic-file-upload-preview"><GrDocumentTxt className="relic-file-upload-preview-icon"/></div>)
+            }
+            else if(extension === 'csv') previews.push(<div className="relic-file-upload-preview"><GrDocumentCsv className="relic-file-upload-preview-icon"/></div>)
+            else if(extension === 'xlsx') previews.push(<div className="relic-file-upload-preview"><GrDocumentExcel className="relic-file-upload-preview-icon"/></div>)
+            else if(extension === 'docx') previews.push(<div className="relic-file-upload-preview"><GrDocumentWord className="relic-file-upload-preview-icon"/></div>)
+            else if(extension === 'pdf') previews.push(<div className="relic-file-upload-preview"><GrDocumentPdf className="relic-file-upload-preview-icon"/></div>)
+            else if(extension === 'zip') previews.push(<div className="relic-file-upload-preview"><GrDocumentZip className="relic-file-upload-preview-icon"/></div>)
+            else previews.push(<div className="relic-file-upload-preview"><GrDocumentText className="relic-file-upload-preview-icon"/></div>)
+        })
+
+        Promise.all(promises)
+        .then(results => {
+            results.forEach(res => {
+                previews.push(<div className="relic-file-upload-preview"><img className="relic-file-upload-preview-image" alt="preview" src={res}/></div>)
+            })
+        })
+        .catch(() => {
+            previews.push(<div className="relic-file-upload-preview"><GrDocumentImage className="relic-file-upload-preview-icon"/></div>)
+        })
+        .finally(() => setFileList(previews))
+    }
+
+    const localOnChange = (e:React.ChangeEvent<HTMLInputElement>) => {
+        previewListRenderer(Array.from(e.target.files!))
+        if(onChange) onChange(Array.from(e.target.files!))
+    }
+
+
+    const onClick = () => {
+        let input = document.querySelector(`#${name}`)
+        input?.dispatchEvent(new MouseEvent('click', {bubbles: false}))
+    }
+
+
+    const imagePromise = (file:File) => {
+        return new Promise<string>((resolve, reject) => {
+            let reader = new FileReader();
+            reader.onload = () => {
+                let result:string = reader.result! as string
+                resolve(result)
+            }
+            reader.onerror = () => {
+                reject("Could not load file")
+            }
+            reader.readAsDataURL(file)
+        })
+    }
+
+
+    const onDrop = React.useCallback(e => {
+        e.preventDefault()
+        if(allowDnD){
+            let fileList:File[] = []
+            if (e.dataTransfer.items) {
+                for (let i = 0; i < e.dataTransfer.items.length; i++) {
+                  if (e.dataTransfer.items[i].kind === 'file') {
+                    let file = e.dataTransfer.items[i].getAsFile();
+                    fileList.push(file)
+                  }
+                }
+            } else {
+                for (let i = 0; i < e.dataTransfer.files.length; i++) {
+                    let file = e.dataTransfer.files[i]
+                    fileList.push(file)
+                }
+            }
+            previewListRenderer(fileList)
+            if(onChange) onChange(fileList)
+        }
+    }, [allowDnD])
+
+
+
+    const onDragOver = React.useCallback(e => {
+        e.preventDefault()
+    }, [allowDnD])
+
+    return (
+        <div ref={ref} onDragOver={onDragOver} onDrop={onDrop} className="relic-file-upload" onClick={onClick}>
+            <label className="relic-file-upload-label" htmlFor={name}>{label} {allowDnD && 'or drop a file from your computer'}</label>
+            <input hidden onChange={localOnChange} id={name} type="file" multiple={allowMultiple}/>
+            <div className="relic-file-upload-preview-list">
+                {fileList.map((item, id) => (<div key={id}>{item}</div>))}
+            </div>
+        </div>
+    )
+})
 
 

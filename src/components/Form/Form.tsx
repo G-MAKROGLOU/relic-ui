@@ -72,6 +72,18 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
     }
 
 
+    setFormValues = (name:string, e:any) => {
+        this.setState((prev:any) => {
+            let nValue = prev;
+            if(Array.isArray(e)) nValue.formValues[name] = e
+            if(e.target) nValue.formValues[name] = e.target.value
+            if(e.value) nValue.formValues[name] = e.value
+            console.log(nValue.formValues)
+            return nValue;
+        });
+    }
+
+
     state:FormProviderProps = {
         setFormItems: this.setFormItems,
         formValidations: [],
@@ -83,7 +95,9 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
         setHasErrors: this.setHasErrors,
         formItems: [],
         formItemNames: [],
-        form: this.form
+        form: this.form,
+        formValues: {},
+        setFormValues: this.setFormValues
     }
     
 
@@ -103,11 +117,10 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
     localOnSubmit = async (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         let target = e.target as HTMLFormElement;
-        let formData = this.prepareFormData(target)
         try{
-            let isValid = await this.isFormValid(formData)
+            let isValid = await this.isFormValid()
             if(isValid){
-                if(this.props.onSubmit) await this.props.onSubmit(formData);
+                if(this.props.onSubmit) await this.props.onSubmit(this.state.formValues);
                 return
             }
             this.setState({hasErrors: true})
@@ -118,36 +131,16 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
     }
 
 
-    prepareFormData = (form:HTMLFormElement | null) => {
-        if(form !== null){
-            let obj:any = {}
-            this.state?.formItemNames?.forEach(name => {
-                if(form[name].length && form[name][0].type === 'checkbox'){
-                    obj[name] = []
-                    form[name].forEach((item:any) => {
-                        if(item.type === 'checkbox'){
-                            obj[name].push({[item.id]: item.checked})
-                        }
-                    })
-                }
-                else if(form[name].type === 'checkbox')
-                    obj[name] = form[name].checked
-                else
-                    obj[name] = form[name].value
-            })
-            return obj;
-        }
-    }
 
-
-    isFormValid = async (formData:any):Promise<boolean> => {
+    isFormValid = async ():Promise<boolean> => {
         if(this!.state!.formValidations!.length === 0) return true;
-
-        let data = this.prepareFormData(this.form.current);
+        let data = this.state.formValues
         let promises:Promise<boolean>[] = []
 
-        this.state!.formValidations!.forEach((nv:NameWithValidation) => {   
-           promises.push(nv.validation.bind(this, {target: {value: data[nv.name]}}).call())
+        this.state!.formValidations!.forEach((nv:NameWithValidation) => {  
+            let value = ''
+            if(data[nv.name]) value = data[nv.name]
+            promises.push(nv.validation.bind(this, {target: {value}}).call())
         })
         let errors:any[] = [];
 
@@ -224,7 +217,7 @@ export class FormProvider extends React.Component<FormProps, FormProviderProps> 
 
 
 
-export const FormItem = ({name, inputType, validation, label, layout, items}:FormItemProps) => {
+export const FormItem = ({name, inputType, validation, label, layout, items, allowDnD, allowMultiple}:FormItemProps) => {
     let context = React.useContext(FormContext)
     let ref = React.useRef<any>(null)
 
@@ -243,20 +236,13 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
                 }
             })
         }
+        if(context.setFormValues){        
+            context.setFormValues(name, e)
+        }
     }
 
     const inputMessage = {
-        opacity: context.hasErrors ? 1 : 0,
-        textAlign: 'center',
-        color: 'tomato', 
-        fontFamily: 'Open Sans, sans-serif', 
-        fontSize: 12,
-        marginTop: 2,
-        width: 300,
-        textOverflow: 'ellipsis',
-        overflow: 'hidden',
-        whiteSpace: 'no-wrap'
-        
+        opacity: context.hasErrors ? 1 : 0 
     }
 
     React.useEffect(() => {
@@ -268,7 +254,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
     [])
 
     if(inputType === 'text'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        return <div className="relic-form-items">
             <Inputs.TextInput 
                 name={name} 
                 label={label} 
@@ -282,7 +268,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
     }
 
     if(inputType === 'number'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        return <div className="relic-form-items">
             <Inputs.NumberInput 
                 name={name} 
                 label={label} 
@@ -296,7 +282,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
 
 
     if(inputType === 'password'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', justifyContent: 'center'}}>
+        return <div className="relic-form-item-password">
             <Inputs.PasswordInput  
                 name={name} 
                 label={label} 
@@ -309,7 +295,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
     }
 
     if(inputType === 'select'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        return <div className="relic-form-items">
             <Inputs.Select
                  label={label} 
                  name={name} 
@@ -323,7 +309,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
 
 
     if(inputType === 'checkbox'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        return <div className="relic-form-items">
                 <Inputs.Checkbox 
                     label={label} 
                     name={name} 
@@ -336,7 +322,7 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
     }
 
     if(inputType === 'radio'){
-        return <div style={{margin: '10px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
+        return <div className="relic-form-items">
                 <Inputs.Radio 
                     label={label} 
                     name={name} 
@@ -346,6 +332,22 @@ export const FormItem = ({name, inputType, validation, label, layout, items}:For
                 />
                 <div className="relic-form-item-error-message" style={inputMessage as React.CSSProperties}>{context.errors![name]}</div>
             </div>
+    }
+
+
+
+    if(inputType === 'file'){
+        return <div className="relic-form-items">
+            <Inputs.FileUpload 
+                name={name} 
+                label={label!} 
+                onChange={localOnChange}
+                ref={ref}
+                allowDnD={allowDnD}
+                allowMultiple={allowMultiple}
+            />  
+            <div className="relic-form-item-error-message" style={inputMessage as React.CSSProperties}>{context!.errors![name]}</div> 
+        </div>
     }
 
     return null

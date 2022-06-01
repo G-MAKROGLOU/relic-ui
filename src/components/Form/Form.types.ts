@@ -11,6 +11,8 @@ export type FormProviderProps = {
     formItemNames?: string[]
     setFormItemsNames?: (names:string[]) => void;
     form?: React.Ref<HTMLFormElement>;
+    formValues?: any;
+    setFormValues?: (name:string, e:any) => void; 
 }
 
 
@@ -43,7 +45,7 @@ export type FormItemProps = {
      * The input type. The form item will render the corresponding input depending the type
      * that you will pass. Each form item accepts the properties of the underlying input. 
      */
-    inputType: "text" | "number" | "radio" | "select" | "checkbox" | "password";
+    inputType: "text" | "number" | "radio" | "select" | "checkbox" | "password" | "file";
     /**
      * A function that gives access to the value in order to validate as you want
      */
@@ -62,6 +64,12 @@ export type FormItemProps = {
      * you'll need a list with JSON that corresponds to the items prop of the underlying component
      */
     items?: any;
+
+    /**
+     * Both props below are only read by the file input. Other inputs will igonre these props. 
+     */
+    allowDnD?:boolean;
+    allowMultiple?:boolean;
 }
 
 

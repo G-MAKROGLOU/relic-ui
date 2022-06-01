@@ -1,3 +1,5 @@
+import React from "react";
+
 export type TextInputProps = {
     /**
      * An optional name for the input. In independent inputs it does not make any difference
@@ -368,4 +370,34 @@ export type CheckboxProps = {
     * The alignment of the label of each checkbox
     */
     alignLabel?: "left" | "right";
+}
+
+
+
+
+export type FileUploadProps = {
+    /**
+     * When allowDnD is false and the upload depends on the user click, allowMultiple allows configuration
+     * of a file upload input for single files or multiple files. The emitted value of onChange remains a list
+     * regardless.
+     */
+    allowMultiple?: boolean;
+    /**
+     * An onChange listener that gives immediate access to an iterable list of files instead of the native event.
+     * Inside onChange you can implement your network request in case a direct upload is needed. If the file upload
+     * is used in a form the file list will be returned in the same JSON structure as the rest of the form values.
+     */
+    onChange: (files: File[]) => void;
+    /**
+     * The content of the label. This is what is shown inside the box instead of the input.
+     */
+    label: string;
+    /**
+     * The name of the input to be matched with the label.
+     */
+    name: string;
+    /**
+     * This overrides allowMultiple. If allowDnD is true, drop of multiple files is allowed anyway
+     */
+    allowDnD?: boolean;
 }
