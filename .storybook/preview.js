@@ -1,4 +1,5 @@
 import "../src/styles/styles.css"
+import '../src/styles/mobile.css'
 
 import { themes } from '@storybook/theming';
 

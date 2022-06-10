@@ -43,7 +43,6 @@ export const NotificationExamples = () => {
         <div style={{display: 'flex', flexWrap: 'wrap', gap: 10, width: 420}}>
             
             <Button
-                style={{width: 200}}
                 type="success"
                 content="Top Left Notification" 
                 onClick={() => notify({
@@ -58,7 +57,6 @@ export const NotificationExamples = () => {
             />
 
             <Button
-                style={{width: 200}}
                 type="danger"
                 content="Top Right Notification" 
                 onClick={() => notify({
@@ -73,7 +71,6 @@ export const NotificationExamples = () => {
             />
 
             <Button
-                style={{width: 200}}
                 type="warning"
                 content="Bottom Left Notification" 
                 onClick={() => notify({
@@ -88,7 +85,6 @@ export const NotificationExamples = () => {
             />
 
             <Button
-                style={{width: 200}}
                 type="info"
                 content="Bottom Right Notification" 
                 onClick={() => notify({

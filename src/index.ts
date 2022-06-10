@@ -1,5 +1,5 @@
 import "./styles/styles.css"
-
+import './styles/mobile.css'
 
 export * from './components/Button/Button'
 export * from './components/Card/Card'
