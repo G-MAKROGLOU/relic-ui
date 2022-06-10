@@ -86,7 +86,7 @@ export function MenuBar({
                 } 
             })
             dispatch({type: 'initialSet', payload: subMenusVisible})
-            setActiveItem(parent!.key)
+            setActiveItem(item!.key)
         }
         if(onItemClick) onItemClick(item)
     }
